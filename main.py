@@ -1,5 +1,5 @@
 import os
-from time import Time
+from time import time as Time
 
 import requests
 from dhooks import File, Webhook
