@@ -1,7 +1,9 @@
 import os
-from flask import Flask, request
+from time import Time
+
 import requests
-from dhooks import Webhook, File
+from dhooks import File, Webhook
+from flask import Flask, request
 
 app = Flask(__name__)
 env = os.environ
@@ -21,6 +23,11 @@ def webhook():
     )
     hook = Webhook(webhook_url)
 
+    release_date = 1642694400
+    now = Time()
+    time = str(round((release_date - now) / 86400)) + "day until release"
+
+    hook.send(content=time, username=username, avatar_url=avatar_url)
     hook.send(content=content, username=username, avatar_url=avatar_url)
 
     for url in media:
