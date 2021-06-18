@@ -25,7 +25,7 @@ def webhook():
 
     release_date = 1642694400
     now = Time()
-    time = str(round((release_date - now) / 86400)) + "day until release"
+    time = ">" + str(round((release_date - now) / 86400)) + " day until release"
 
     hook.send(content=time, username=username, avatar_url=avatar_url)
     hook.send(content=content, username=username, avatar_url=avatar_url)
