@@ -14,7 +14,8 @@ def webhook():
     content = request.json["content"]
     username = request.json["username"]
     avatar_url = request.json["avatar_url"]
-    media = request.json["media"].split(",")
+    try:
+        media = request.json["media"].split(",")
     webhook_url = (
         "https://discord.com/api/webhooks/"
         + env.get("webhook_id")
