@@ -16,6 +16,8 @@ def webhook():
     avatar_url = request.json["avatar_url"]
     try:
         media = request.json["media"].split(",")
+    except:
+    
     webhook_url = (
         "https://discord.com/api/webhooks/"
         + env.get("webhook_id")
