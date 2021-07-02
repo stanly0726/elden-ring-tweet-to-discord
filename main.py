@@ -18,6 +18,7 @@ def webhook():
         media = request.json["media"].split(",")
     except:
         pass
+    
     webhook_url = (
         "https://discord.com/api/webhooks/"
         + env.get("webhook_id")
@@ -32,13 +33,15 @@ def webhook():
 
     hook.send(content=time, username=username, avatar_url=avatar_url)
     hook.send(content=content, username=username, avatar_url=avatar_url)
-
-    for url in media:
-        r = requests.get(url)
-        open("file", "wb").write(r.content)
-        f = File("file", "image.jpg")
-        hook.send(file=f, username=username, avatar_url=avatar_url)
-
+    try:
+        for url in media:
+            r = requests.get(url)
+            open("file", "wb").write(r.content)
+            f = File("file", "image.jpg")
+            hook.send(file=f, username=username, avatar_url=avatar_url)
+    except:
+        pass
+    
     return "200 ok"
 
 
