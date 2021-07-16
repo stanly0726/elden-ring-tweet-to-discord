@@ -1,6 +1,5 @@
 import os
-from time import time as Time
-
+import time
 import requests
 from dhooks import File, Webhook
 from flask import Flask, request
@@ -28,7 +27,7 @@ def webhook():
     hook = Webhook(webhook_url)
 
     release_date = 1642694400
-    now = Time()
+    now = time.time()
     days = "> " + str(round((release_date - now) / 86400)) + " day until release"
 
     hook.send(content=days, username=username, avatar_url=avatar_url)
