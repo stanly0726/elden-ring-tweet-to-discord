@@ -26,7 +26,7 @@ def webhook():
     )
     hook = Webhook(webhook_url)
 
-    release_date = 1642694400
+    release_date = 1645718400
     now = time.time()
     days = "> " + str(round((release_date - now) / 86400)) + " day until release"
 
