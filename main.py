@@ -19,9 +19,15 @@ def webhook():
         pass
 
     try:
-        video = eval(request.json["video"])[0]
+        video = request.json["video"].split(",")
     except:
         video = ""
+
+    print("=================")
+    print(media)
+    print("=================")
+    print(video)
+    print("=================")
 
     webhook_url = (
         "https://discord.com/api/webhooks/"
@@ -40,10 +46,11 @@ def webhook():
     hook.send(content=content, username=username, avatar_url=avatar_url)
     if video:
         try:
-            r = requests.get(video)
-            open("file", "wb").write(r.content)
-            f = File("file", "video.mp4")
-            hook.send(file=f, username=username, avatar_url=avatar_url)
+            for url in video:
+                r = requests.get(url)
+                open("file", "wb").write(r.content)
+                f = File("file", "video.mp4")
+                hook.send(file=f, username=username, avatar_url=avatar_url)
         except:
             pass
     else:
