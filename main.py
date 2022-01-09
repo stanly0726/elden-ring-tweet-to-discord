@@ -46,11 +46,10 @@ def webhook():
     hook.send(content=content, username=username, avatar_url=avatar_url)
     if video:
         try:
-            for url in video:
-                r = requests.get(url)
-                open("file", "wb").write(r.content)
-                f = File("file", "video.mp4")
-                hook.send(file=f, username=username, avatar_url=avatar_url)
+            r = requests.get(video[0])
+            open("file", "wb").write(r.content)
+            f = File("file", "video.mp4")
+            hook.send(file=f, username=username, avatar_url=avatar_url)
         except:
             pass
     else:
