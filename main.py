@@ -41,8 +41,8 @@ def webhook():
     now = time.time()
     days = "> " + str(round((release_date - now) / 86400)) + " day until release"
 
-    hook.send(content=days, username=username, avatar_url=avatar_url)
-    time.sleep(1)
+    # hook.send(content=days, username=username, avatar_url=avatar_url)
+    # time.sleep(1)
     hook.send(content=content, username=username, avatar_url=avatar_url)
     if video:
         try:
